@@ -9,6 +9,7 @@ import { TaskService } from './services/task.service';
 })
 export class AppComponent implements OnInit{
   tasks: Array<Task>= [];
+  comment = "<p><em><strong>abc</strong></em></p>";
 
   constructor(
     private readonly taskService: TaskService,
@@ -19,14 +20,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.taskService.getTask().subscribe(result => {
-        this.tasks = result
+        this.tasks = result;
       }
     );
-  }
-
-  parser(txt: string) {
-    var parser = new DOMParser();
-    var htmlDoc = parser.parseFromString(txt, 'text/html'); 
-    return htmlDoc;
   }
 }

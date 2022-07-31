@@ -8,11 +8,13 @@
         <th>createdAt</th>
         <th>dueDate</th>
     </tr>
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of tasks; let i = index">
         <td>{{task.name}}</td>
         <td>{{task.status}}</td>
-        <td>{{task.description}}</td>
-        <td>{{task.createdAt}}</td>
-        <td>{{task.dueDate}}</td>
+        <td [innerHTML]="task.description"></td>
+        <td *ngIf="task.createdAt; else noCreatedAt">{{task.createdAt}}</td>
+        <ng-template #noCreatedAt><td>N/A</td></ng-template>
+        <td *ngIf="task.dueDate; else noDueDate">{{task.dueDate}}</td>
+        <ng-template #noDueDate><td>N/A</td></ng-template>
     </tr>
   </table>
